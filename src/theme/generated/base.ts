@@ -81,5 +81,11 @@ export const typography = {
     "fontSize": "0.75rem",
     "lineHeight": 1.66,
     "letterSpacing": "0.0333em"
+  },
+  "button": {
+    "fontWeight": 500,
+    "fontSize": "0.875rem",
+    "lineHeight": 1.75,
+    "letterSpacing": "0.0286em"
   }
 } as const;
