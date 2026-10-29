@@ -57,6 +57,9 @@ Not built yet. Until it is, change tokens in Figma only.
 - In MUI, `dark` must be darker than `main` and `light` lighter, in both schemes. MUI uses `dark` for hover and
   `light` for alert colours.
 - MUI rounds calculated colours down; Figma rounds to nearest. A difference of 1 (out of 255) is expected and allowed.
+- MUI X components derive some colours themselves. The Data Grid lightens the divider for its borders, which almost
+  vanished with our palette, so `MuiDataGrid` in `src/theme/components.ts` points its border colour at `divider`.
+  Check other MUI X components for the same thing when adding them.
 
 ## Figma components
 
@@ -70,6 +73,7 @@ The kit's own components (pages marked ❖) are kept as MUI's reference. Don't b
 | `Alert` · severity, title + titleText, message, onClose | `<Alert>` · severity, title, children, onClose | Standard style only |
 | `StatusLabel` · status, label | `<StatusLabel>` · status, label | Built from scratch: MUI's Chip is locked in the kit |
 | `Card` · title, subtitle, Action / Content / Footer slots | `<Card>` · title, subtitle, action, children, footer | Native Figma slots |
+| `DataTable` · Header and Rows slots, built from `DataTable/HeaderCell` (label, density, align) and `DataTable/Cell` (value, type, density) | `<DataTable>` · rows, columns (field, header, type, grow), label, loading, emptyMessage, density, pageSize | MUI X Data Grid (Community). Figma's columns are equal width; code uses `grow` |
 
 `state` (enabled, hovered, focused, pressed, disabled, error) and `hasValue` are Figma-only: code handles them itself.
 
@@ -79,7 +83,7 @@ hard-codes inside its components. They are not tokens and are not exported.
 
 **Raw values allowed in Figma components**, because MUI hard-codes the same numbers in code: Button padding
 (6/16, 4/10), TextField padding (16.5/14), Alert padding (6/16) and icon gaps, StatusLabel height (24) and pill
-radius (16). Everything else (colours, Card and StatusLabel spacing, radius) is bound to variables.
+radius (16), DataTable cell padding (10) and heights (header 56 / 39 compact, rows 52 / 36 compact). Everything else (colours, Card and StatusLabel spacing, radius) is bound to variables.
 
 **Checking a match:** measure the Storybook story in a browser and the Figma variant with the plugin API, and
 compare size, padding, font, line height. The last check (29 Oct 2026) matched to within 1px.

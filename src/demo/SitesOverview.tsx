@@ -1,7 +1,7 @@
 // Sites overview: site status at a glance and the latest inspections. Built only from @northwind/ui.
 import { useState } from 'react';
-import { Alert, Card, ColorSchemeSwitch, Stack, StatusLabel, Text, TextField } from '@northwind/ui';
-import type { StatusLabelProps } from '@northwind/ui';
+import { Alert, Card, ColorSchemeSwitch, DataTable, Stack, StatusLabel, Text, TextField } from '@northwind/ui';
+import type { DataTableColumn, StatusLabelProps, StatusValue } from '@northwind/ui';
 
 type Status = NonNullable<StatusLabelProps['status']>;
 
@@ -17,8 +17,8 @@ type Inspection = {
   id: string;
   site: string;
   inspector: string;
-  date: string;
-  result: 'passed' | 'failed' | 'pending';
+  date: string; // ISO date and time
+  result: StatusValue;
 };
 
 const SITES: Site[] = [
@@ -45,21 +45,29 @@ const SITES: Site[] = [
   },
 ];
 
-// Newest first.
+// Newest first. Dates are relative to today so the demo always reads naturally.
+const now = new Date();
+const at = (daysAgo: number, h: number, m: number) =>
+  new Date(now.getFullYear(), now.getMonth(), now.getDate() - daysAgo, h, m).toISOString();
+const PASSED: StatusValue = { status: 'success', label: 'Passed' };
+const FAILED: StatusValue = { status: 'error', label: 'Failed' };
+const PENDING: StatusValue = { status: 'neutral', label: 'Pending' };
+
 const INSPECTIONS: Inspection[] = [
-  { id: 'i-106', site: 'Antwerp yard', inspector: 'Lotte Peeters', date: 'Today, 09:30', result: 'pending' },
-  { id: 'i-105', site: 'Rotterdam terminal', inspector: 'Sanne de Vries', date: 'Yesterday, 14:15', result: 'passed' },
-  { id: 'i-104', site: 'Antwerp yard', inspector: 'Elise Maes', date: 'Tue 27 Oct', result: 'passed' },
-  { id: 'i-103', site: 'Rotterdam terminal', inspector: 'Pieter Jansen', date: 'Mon 26 Oct', result: 'passed' },
-  { id: 'i-102', site: 'Hamburg depot', inspector: 'Jonas Becker', date: 'Fri 23 Oct', result: 'failed' },
-  { id: 'i-101', site: 'Hamburg depot', inspector: 'Mira Schulz', date: 'Thu 22 Oct', result: 'pending' },
+  { id: 'i-106', site: 'Antwerp yard', inspector: 'Lotte Peeters', date: at(0, 9, 30), result: PENDING },
+  { id: 'i-105', site: 'Rotterdam terminal', inspector: 'Sanne de Vries', date: at(1, 14, 15), result: PASSED },
+  { id: 'i-104', site: 'Antwerp yard', inspector: 'Elise Maes', date: at(2, 11, 0), result: PASSED },
+  { id: 'i-103', site: 'Rotterdam terminal', inspector: 'Pieter Jansen', date: at(3, 10, 20), result: PASSED },
+  { id: 'i-102', site: 'Hamburg depot', inspector: 'Jonas Becker', date: at(6, 8, 45), result: FAILED },
+  { id: 'i-101', site: 'Hamburg depot', inspector: 'Mira Schulz', date: at(7, 16, 5), result: PENDING },
 ];
 
-const RESULTS: Record<Inspection['result'], { status: Status; label: string }> = {
-  passed: { status: 'success', label: 'Passed' },
-  failed: { status: 'error', label: 'Failed' },
-  pending: { status: 'neutral', label: 'Pending' },
-};
+const INSPECTION_COLUMNS: DataTableColumn<Inspection>[] = [
+  { field: 'site', header: 'Site', grow: 2 },
+  { field: 'inspector', header: 'Inspector', grow: 2 },
+  { field: 'date', header: 'Date', type: 'date' },
+  { field: 'result', header: 'Result', type: 'status' },
+];
 
 export function SitesOverview() {
   const [query, setQuery] = useState('');
@@ -105,19 +113,7 @@ export function SitesOverview() {
 
       <Stack gap={2} as="section">
         <Text variant="h6" as="h2">Recent inspections</Text>
-        <Card>
-          <Stack gap={2}>
-            {INSPECTIONS.map((inspection) => (
-              <Stack key={inspection.id} direction="row" justify="between" align="center" gap={2}>
-                <Stack gap={0.5}>
-                  <Text variant="subtitle2" as="p">{inspection.site}</Text>
-                  <Text color="secondary">{inspection.inspector} · {inspection.date}</Text>
-                </Stack>
-                <StatusLabel status={RESULTS[inspection.result].status} label={RESULTS[inspection.result].label} />
-              </Stack>
-            ))}
-          </Stack>
-        </Card>
+        <DataTable rows={INSPECTIONS} columns={INSPECTION_COLUMNS} label="Recent inspections" />
       </Stack>
     </Stack>
   );

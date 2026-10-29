@@ -21,6 +21,8 @@ export { Button } from './components/Button/Button';
 export type { ButtonProps } from './components/Button/Button';
 export { Card } from './components/Card/Card';
 export type { CardProps } from './components/Card/Card';
+export { DataTable, formatDate } from './components/DataTable/DataTable';
+export type { DataTableColumn, DataTableProps, StatusValue } from './components/DataTable/DataTable';
 export { ColorSchemeSwitch } from './components/ColorSchemeSwitch/ColorSchemeSwitch';
 export type { ColorSchemeSwitchProps } from './components/ColorSchemeSwitch/ColorSchemeSwitch';
 export { StatusLabel } from './components/StatusLabel/StatusLabel';

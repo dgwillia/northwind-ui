@@ -17,6 +17,7 @@ Read this before building a screen. Component props and examples are in Storyboo
 | `TextField` | Single-line input. Always give a `label`. Pair `error` with a `helperText` that says how to fix it. | Use `placeholder` as the label. |
 | `StatusLabel` | The state of a record, often in a table row or a card's `action`. | Make it clickable. Use it for counts or categories. |
 | `Alert` | A message about the page or a task. `info`, `success`, `warning`, `error`. | Stack more than two on one screen. Use `error` for something that only needs attention. |
+| `DataTable` | Lists people scan or compare: inspections, sites, permits. Columns are `text`, `number` (right-aligned), `date` (formatted as below) or `status` (a StatusLabel). Give it a `label` and an `emptyMessage` that says what's missing. Use `density="compact"` on dense screens. | Use it for two or three items (use Cards). Put buttons or links inside cells. |
 | `Card` | Grouping related content: a site, a report, a form. Title, optional subtitle, optional `action` at the top right, `footer` for buttons. | Nest cards inside cards. |
 | `Stack` | All layout: rows, columns, gaps, alignment. | Reach for divs and CSS. |
 | `Text` | All text. `body2` is the default for dense screens. | Pick a variant for its size alone; headings should follow the page structure (use `as`). |
@@ -46,8 +47,9 @@ Read this before building a screen. Component props and examples are in Storyboo
 
 ## Not in the system yet
 
-Tables, icons, navigation, dialogs, select menus, tabs, date pickers. If a screen needs one, say so in the PR.
-MUI has all of these; they will be wrapped when there is a real use for them.
+Icons, navigation, dialogs, select menus, tabs, date pickers, a grid layout, a divider, a page max width, an
+empty-state component outside tables. If a screen needs one, say so in the PR. MUI has most of these; they will be
+wrapped when there is a real use for them.
 
 ## Tokens
 
