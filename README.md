@@ -13,6 +13,15 @@ npm run storybook    # Storybook at http://localhost:6006 (MCP at /mcp)
 npm run check        # what CI runs
 ```
 
+## How the theme works
+
+```
+Figma variables ──export──▶ sync/figma-snapshot.json ──▶ tokens/ (DTCG) ──Style Dictionary──▶ src/theme/generated/ ──▶ createTheme()
+```
+
+Figma is the source of truth. See CLAUDE.md for the sync procedure.
+
 ## Status
 
-Step 1: project set up. Tokens, theme and components come next.
+- Step 1: project set up.
+- Step 3: token pipeline. Figma drives the MUI theme, light and dark.
