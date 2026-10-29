@@ -1,14 +1,16 @@
 import Typography from '@mui/material/Typography';
 import type { ReactNode } from 'react';
 
+// MUI 9 Typography takes these names. It silently ignores anything else (such as 'text.secondary', the MUI 5 style),
+// so keep this map in step with Typography's `color` prop.
 const COLORS = {
-  primary: 'text.primary',
-  secondary: 'text.secondary',
-  disabled: 'text.disabled',
-  error: 'error.main',
-  warning: 'warning.main',
-  success: 'success.main',
-  info: 'info.main',
+  primary: 'textPrimary',
+  secondary: 'textSecondary',
+  disabled: 'textDisabled',
+  error: 'error',
+  warning: 'warning',
+  success: 'success',
+  info: 'info',
 } as const;
 
 export interface TextProps {
@@ -20,8 +22,11 @@ export interface TextProps {
    * @default 'body2'
    */
   variant?: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'subtitle1' | 'subtitle2' | 'body1' | 'body2' | 'caption' | 'overline';
-  /** Text colour role. Use `secondary` for supporting text, status colours only to report a status. @default 'primary' */
-  color?: keyof typeof COLORS;
+  /**
+   * Text colour role: 'primary' | 'secondary' | 'disabled' | 'error' | 'warning' | 'success' | 'info'.
+   * Use `secondary` for supporting text, status colours only to report a status. @default 'primary'
+   */
+  color?: 'primary' | 'secondary' | 'disabled' | 'error' | 'warning' | 'success' | 'info';
   /**
    * HTML element. Headings render as the matching h tag by default; set this when the visual size and the
    * document structure differ, e.g. `variant="h5" as="h1"` for a page title.
