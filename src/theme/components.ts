@@ -22,8 +22,15 @@ export const components: ThemeOptions['components'] = {
     defaultProps: { variant: 'outlined' },
   },
   // Smaller card headings than MUI's default (h5 / body1) for dense screens. Matches Figma's Card.
+  // Figma's header keeps 16px (spacing 2) between the title and the action, and sits the action flush with the
+  // padding. MUI has no gap and pulls the action out with negative margins (sized for icon buttons), so a long
+  // title runs into a StatusLabel.
   MuiCardHeader: {
     defaultProps: { slotProps: { title: { variant: 'h6' }, subheader: { variant: 'body2' } } },
+    styleOverrides: {
+      root: ({ theme }) => ({ gap: theme.spacing(2) }),
+      action: { margin: 0 },
+    },
   },
   // Footer buttons sit on the right, primary action last.
   MuiCardActions: {
