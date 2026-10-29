@@ -3,7 +3,7 @@
     "borderRadius": {
       "$type": "dimension",
       "$value": {
-        "value": 8,
+        "value": 20,
         "unit": "px"
       }
     }
