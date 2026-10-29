@@ -2,6 +2,7 @@
 // Every value comes from Figma through the token pipeline (src/theme/generated/*). Only the wiring lives here.
 // Derived colours (hover tints, alert colours, dark surfaces) are calculated by MUI from these source roles.
 import { createTheme } from '@mui/material/styles';
+import { components } from './components';
 import { shape, spacingUnit, typography } from './generated/base';
 import { darkPalette } from './generated/palette.dark';
 import { lightPalette } from './generated/palette.light';
@@ -17,4 +18,5 @@ export const theme = createTheme({
   shape,
   spacing: spacingUnit,
   typography,
+  components,
 });

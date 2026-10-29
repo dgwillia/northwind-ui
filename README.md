@@ -25,3 +25,4 @@ Figma is the source of truth. See CLAUDE.md for the sync procedure.
 
 - Step 1: project set up.
 - Step 3: token pipeline. Figma drives the MUI theme, light and dark.
+- Step 4: five wrapped components: Alert, Button, Card, StatusLabel, TextField.

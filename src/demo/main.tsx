@@ -4,7 +4,7 @@ import '@fontsource/inter/300.css';
 import '@fontsource/inter/400.css';
 import '@fontsource/inter/500.css';
 import '@fontsource/inter/700.css';
-import { NorthwindProvider } from '../index';
+import { NorthwindProvider } from '@northwind/ui';
 import { App } from './App';
 
 createRoot(document.getElementById('root')!).render(
