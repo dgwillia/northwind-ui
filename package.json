@@ -10,12 +10,14 @@
   },
   "scripts": {
     "dev": "vite",
-    "build": "tsc --noEmit && vite build",
+    "build": "npm run tokens:build && tsc --noEmit && vite build",
+    "tokens:from-figma": "node sync/checksum.mjs && node sync/snapshot-to-tokens.mjs && node sync/check-derived.mjs",
+    "tokens:build": "node style-dictionary.config.mjs",
     "lint": "eslint .",
     "typecheck": "tsc --noEmit",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build -o storybook-static",
-    "check": "npm run lint && npm run typecheck"
+    "check": "npm run tokens:from-figma && npm run tokens:build && git diff --exit-code -- tokens src/theme/generated && npm run lint && npm run typecheck"
   },
   "dependencies": {
     "@emotion/react": "11.14.0",
@@ -35,6 +37,7 @@
     "@vitejs/plugin-react": "6.1.2",
     "eslint": "10.13.0",
     "storybook": "10.6.5",
+    "style-dictionary": "5.7.1",
     "typescript": "6.0.3",
     "typescript-eslint": "8.72.1",
     "vite": "8.3.5"
