@@ -27,3 +27,6 @@ Figma is the source of truth. See CLAUDE.md for the sync procedure.
 - Step 3: token pipeline. Figma drives the MUI theme, light and dark.
 - Step 4: five wrapped components: Alert, Button, Card, StatusLabel, TextField.
 - Step 5: matching Figma components on the Northwind page, same names and props.
+- Step 6: guardrails (ESLint, AGENTS.md, DESIGN.md), Stack, Text, ColorSchemeSwitch.
+- Step 7: tested: a radius change in Figma reached code with no code edits; an agent built a Sites screen and reported gaps.
+- Step 8: DataTable (MUI X Data Grid) in code and Figma.
