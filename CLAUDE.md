@@ -1,8 +1,9 @@
 # Northwind UI: notes for Claude
 
-Read `AGENTS.md` first. Its rules apply to you.
+Read `AGENTS.md` first. Its rules apply to you. `DESIGN.md` has the design rules and the token reference.
 
 - Stack: React 19, TypeScript 6, Vite 8, MUI 9 (Emotion), Style Dictionary 5, Storybook 10 with the MCP addon, ESLint, GitHub Actions.
+- `npm run check` = Figma snapshot checks, tokens, theme and DESIGN.md rebuilt and compared, ESLint guardrails, TypeScript.
 - TypeScript is pinned to 6.0.x because typescript-eslint does not support TypeScript 7 yet.
 - npm is pinned to 11.6.2 (`packageManager` in package.json). Use it so `package-lock.json` stays stable.
 - Figma file: `HK9pcsf3PfuzcH5Q9AJT8D` (Northwind UI). It started as a copy of MUI's free community kit.
@@ -53,6 +54,9 @@ Not built yet. Until it is, change tokens in Figma only.
   Put case in the text style itself.
 - A text layer whose name follows its content renames itself when you change a TEXT property default.
   Find layers by `componentPropertyReferences`, not by name.
+- In MUI, `dark` must be darker than `main` and `light` lighter, in both schemes. MUI uses `dark` for hover and
+  `light` for alert colours.
+- MUI rounds calculated colours down; Figma rounds to nearest. A difference of 1 (out of 255) is expected and allowed.
 
 ## Figma components
 
@@ -79,6 +83,3 @@ radius (16). Everything else (colours, Card and StatusLabel spacing, radius) is 
 
 **Checking a match:** measure the Storybook story in a browser and the Figma variant with the plugin API, and
 compare size, padding, font, line height. The last check (29 Oct 2026) matched to within 1px.
-- In MUI, `dark` must be darker than `main` and `light` lighter, in both schemes. MUI uses `dark` for hover and
-  `light` for alert colours.
-- MUI rounds calculated colours down; Figma rounds to nearest. A difference of 1 (out of 255) is expected and allowed.
