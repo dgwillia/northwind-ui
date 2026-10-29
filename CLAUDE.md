@@ -47,9 +47,38 @@ Not built yet. Until it is, change tokens in Figma only.
 
 ## Gotchas
 
-- The kit's components were originally bound to MUI's *published library*, not the local variables.
-  Button, Alert, Text Field and Card were re-bound to local variables (29 Oct 2026). Other kit components were not.
-  Before changing tokens, check what a component is actually bound to.
+- The kit's components were originally bound to MUI's *published library*, not the local variables, and used
+  MUI's library text styles (Roboto, uppercase buttons). Before changing tokens, check what a component is actually bound to.
+- Applying a text style and then changing the layer's case (or other text property) silently detaches the style.
+  Put case in the text style itself.
+- A text layer whose name follows its content renames itself when you change a TEXT property default.
+  Find layers by `componentPropertyReferences`, not by name.
+
+## Figma components
+
+The components to use live on the **Northwind** page. They match `@northwind/ui` by name and props.
+The kit's own components (pages marked ❖) are kept as MUI's reference. Don't build from them.
+
+| Figma | Code | Notes |
+|---|---|---|
+| `Button` · variant, size, label, startIcon, endIcon | `<Button>` · variant, size, children, startIcon, endIcon | Copied from the kit, 360 → 40 variants |
+| `TextField` · label, value, placeholder, helperText, required | `<TextField>` · same; `state=error` ↔ `error` | Outlined, medium only |
+| `Alert` · severity, title + titleText, message, onClose | `<Alert>` · severity, title, children, onClose | Standard style only |
+| `StatusLabel` · status, label | `<StatusLabel>` · status, label | Built from scratch: MUI's Chip is locked in the kit |
+| `Card` · title, subtitle, Action / Content / Footer slots | `<Card>` · title, subtitle, action, children, footer | Native Figma slots |
+
+`state` (enabled, hovered, focused, pressed, disabled, error) and `hasValue` are Figma-only: code handles them itself.
+
+**Text styles.** `typography/*` styles are tokens and go through the pipeline (including `typography/button`).
+`component/*` styles (button-small, input-value, input-label, alert-title, chip-label) mirror values MUI
+hard-codes inside its components. They are not tokens and are not exported.
+
+**Raw values allowed in Figma components**, because MUI hard-codes the same numbers in code: Button padding
+(6/16, 4/10), TextField padding (16.5/14), Alert padding (6/16) and icon gaps, StatusLabel height (24) and pill
+radius (16). Everything else (colours, Card and StatusLabel spacing, radius) is bound to variables.
+
+**Checking a match:** measure the Storybook story in a browser and the Figma variant with the plugin API, and
+compare size, padding, font, line height. The last check (29 Oct 2026) matched to within 1px.
 - In MUI, `dark` must be darker than `main` and `light` lighter, in both schemes. MUI uses `dark` for hover and
   `light` for alert colours.
 - MUI rounds calculated colours down; Figma rounds to nearest. A difference of 1 (out of 255) is expected and allowed.

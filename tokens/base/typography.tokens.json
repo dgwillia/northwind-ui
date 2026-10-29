@@ -223,6 +223,22 @@
             "unit": "em"
           }
         }
+      },
+      "button": {
+        "$type": "typography",
+        "$value": {
+          "fontFamily": "{typography.fontFamily}",
+          "fontWeight": 500,
+          "fontSize": {
+            "value": 0.875,
+            "unit": "rem"
+          },
+          "lineHeight": 1.75,
+          "letterSpacing": {
+            "value": 0.0286,
+            "unit": "em"
+          }
+        }
       }
     }
   }

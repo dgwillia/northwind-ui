@@ -21,6 +21,10 @@ export const components: ThemeOptions['components'] = {
   MuiCard: {
     defaultProps: { variant: 'outlined' },
   },
+  // Smaller card headings than MUI's default (h5 / body1) for dense screens. Matches Figma's Card.
+  MuiCardHeader: {
+    defaultProps: { slotProps: { title: { variant: 'h6' }, subheader: { variant: 'body2' } } },
+  },
   // Footer buttons sit on the right, primary action last.
   MuiCardActions: {
     styleOverrides: { root: { justifyContent: 'flex-end' } },
