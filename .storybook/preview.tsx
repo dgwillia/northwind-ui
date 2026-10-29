@@ -1,11 +1,10 @@
 import type { Decorator, Preview } from '@storybook/react-vite';
-import Stack from '@mui/material/Stack';
 import { useEffect, type ReactNode } from 'react';
 import '@fontsource/inter/300.css';
 import '@fontsource/inter/400.css';
 import '@fontsource/inter/500.css';
 import '@fontsource/inter/700.css';
-import { NorthwindProvider, useColorScheme } from '../src/index';
+import { NorthwindProvider, Stack, useColorScheme, type SpacingStep } from '../src/index';
 
 // Keeps MUI's colour scheme in step with the Storybook toolbar.
 function SchemeSync({ scheme, children }: { scheme: 'light' | 'dark'; children: ReactNode }) {
@@ -29,11 +28,14 @@ const withTheme: Decorator = (Story, ctx) => (
 const withLayout: Decorator = (Story, ctx) => {
   const { layout, maxWidth } = (ctx.parameters.northwind ?? {}) as { layout?: 'row' | 'column'; maxWidth?: number };
   if (!layout && !maxWidth) return <Story />;
-  return (
-    <Stack direction={layout === 'row' ? 'row' : 'column'} spacing={layout === 'row' ? 1 : 2} sx={{ maxWidth, flexWrap: 'wrap' }}>
+  const gap: SpacingStep = layout === 'row' ? 1 : 2;
+  const stack = (
+    <Stack direction={layout ?? 'column'} gap={gap} wrap={layout === 'row'}>
       <Story />
     </Stack>
   );
+  // maxWidth is a Storybook-only preview frame, not a design value, so a plain style is fine here (outside src/).
+  return maxWidth ? <div style={{ maxWidth }}>{stack}</div> : stack;
 };
 
 const preview: Preview = {

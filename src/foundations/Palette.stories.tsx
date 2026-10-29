@@ -1,44 +1,33 @@
 // Shows the theme's colour roles as MUI resolves them, for comparing with Figma's Theme check page.
-import Box from '@mui/material/Box';
-import Stack from '@mui/material/Stack';
-import Typography from '@mui/material/Typography';
 import type { Meta, StoryObj } from '@storybook/react-vite';
+import { Stack, Text } from '@northwind/ui';
+import { Swatch } from './Swatch';
 
 const ROLES = ['primary', 'secondary', 'error', 'warning', 'info', 'success'] as const;
 const SHADES = ['light', 'main', 'dark'] as const;
 
-function Swatch({ bg, fg, label }: { bg: string; fg: string; label: string }) {
-  return (
-    <Box sx={{ bgcolor: bg, color: fg, p: 1.5, minWidth: 96, borderRadius: 1 }}>
-      <Typography variant="caption">{label}</Typography>
-    </Box>
-  );
-}
-
 function Palette() {
   return (
-    <Stack spacing={2} sx={{ p: 2, bgcolor: 'background.default' }}>
+    <Stack gap={2} padding={2}>
       {ROLES.map(role => (
-        <Stack key={role} direction="row" spacing={1} sx={{ alignItems: 'center' }}>
-          <Typography sx={{ width: 96 }}>{role}</Typography>
+        <Stack key={role} direction="row" gap={1} align="center">
+          <Text variant="body1">{role}</Text>
           {SHADES.map(shade => (
-            <Swatch key={shade} bg={`${role}.${shade}`} fg={`${role}.contrastText`} label={shade} />
+            <Swatch key={shade} background={`${role}.${shade}`} foreground={`${role}.contrastText`} label={shade} />
           ))}
         </Stack>
       ))}
-      <Stack direction="row" spacing={1} sx={{ alignItems: 'center' }}>
-        <Typography sx={{ width: 96 }}>surfaces</Typography>
-        <Swatch bg="background.default" fg="text.primary" label="default" />
-        <Swatch bg="background.paper" fg="text.primary" label="paper" />
-        <Box sx={{ border: 1, borderColor: 'divider', p: 1.5, minWidth: 96, borderRadius: 1 }}>
-          <Typography variant="caption">divider</Typography>
-        </Box>
+      <Stack direction="row" gap={1} align="center">
+        <Text variant="body1">surfaces</Text>
+        <Swatch background="background.default" foreground="text.primary" label="default" />
+        <Swatch background="background.paper" foreground="text.primary" label="paper" />
+        <Swatch background="divider" foreground="text.primary" label="divider" outline />
       </Stack>
-      <Stack direction="row" spacing={2} sx={{ alignItems: 'baseline' }}>
-        <Typography sx={{ width: 96 }}>text</Typography>
-        <Typography color="text.primary">primary</Typography>
-        <Typography color="text.secondary">secondary</Typography>
-        <Typography color="text.disabled">disabled</Typography>
+      <Stack direction="row" gap={2} align="baseline">
+        <Text variant="body1">text</Text>
+        <Text variant="body1">primary</Text>
+        <Text variant="body1" color="secondary">secondary</Text>
+        <Text variant="body1" color="disabled">disabled</Text>
       </Stack>
     </Stack>
   );

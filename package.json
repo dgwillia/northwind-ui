@@ -17,7 +17,8 @@
     "typecheck": "tsc --noEmit",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build -o storybook-static",
-    "check": "npm run tokens:from-figma && npm run tokens:build && git diff --exit-code -- tokens src/theme/generated && npm run lint && npm run typecheck"
+    "check": "npm run tokens:from-figma && npm run tokens:build && npm run design-md:build && git diff --exit-code -- tokens src/theme/generated DESIGN.md && npm run lint && npm run typecheck",
+    "design-md:build": "node scripts/build-design-md.mjs"
   },
   "dependencies": {
     "@emotion/react": "11.14.0",
