@@ -113,7 +113,7 @@ Stack `gap` and `padding` take these steps. 1 step = 8px. Same as Figma's `spaci
 
 ### Shape
 
-Corner radius: 8px (MUI's single `shape.borderRadius`). Status labels are pills.
+Corner radius: 20px (MUI's single `shape.borderRadius`). Status labels are pills.
 
 ### Text styles
 
