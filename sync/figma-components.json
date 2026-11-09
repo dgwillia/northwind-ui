@@ -1,0 +1,281 @@
+{
+  "fileKey": "HK9pcsf3PfuzcH5Q9AJT8D",
+  "components": {
+    "Button": {
+      "properties": {
+        "startIcon": {
+          "type": "BOOLEAN",
+          "default": false
+        },
+        "endIcon": {
+          "type": "BOOLEAN",
+          "default": false
+        },
+        "↳ startIcon": {
+          "type": "INSTANCE_SWAP"
+        },
+        "↳ endIcon": {
+          "type": "INSTANCE_SWAP"
+        },
+        "label": {
+          "type": "TEXT",
+          "default": "Button"
+        },
+        "variant": {
+          "type": "VARIANT",
+          "options": [
+            "primary",
+            "danger",
+            "secondary",
+            "ghost"
+          ],
+          "default": "primary"
+        },
+        "size": {
+          "type": "VARIANT",
+          "options": [
+            "medium",
+            "small"
+          ],
+          "default": "medium"
+        },
+        "state": {
+          "type": "VARIANT",
+          "options": [
+            "enabled",
+            "focused",
+            "pressed",
+            "disabled",
+            "hovered"
+          ],
+          "default": "enabled"
+        }
+      },
+      "description": "import { Button } from &#39;@northwind/ui&#39;\n\nTriggers an action. Wraps MUI Button with Northwind&#39;s four variants.\n\nProps\n• children. In Figma: text &quot;label&quot;\n    The label. Use sentence case and a verb: &quot;Save changes&quot;, &quot;Export CSV&quot;.\n• variant?: primary | secondary | ghost | danger (default primary)\n    What the button is for.\n    - primary: the main action. Use at most one per area.\n    - secondary: other actions next to a primary one.\n    - ghost: low-emphasis actions, often in toolbars or lists.\n    - danger: destructive actions such as Delete. Ask for confirmation first.\n• size?: small | medium (default medium)\n• startIcon?. In Figma: icon &quot;↳ startIcon&quot; + toggle &quot;startIcon&quot;\n    Icon before the label.\n• endIcon?. In Figma: icon &quot;↳ endIcon&quot; + toggle &quot;endIcon&quot;\n    Icon after the label.\n• loading?: true | false. Not in Figma yet\n    Shows a spinner and disables the button while an action runs.\n• disabled?: true | false. In Figma: state=disabled\n\nStorybook: Components/Button\n\nGenerated from code. Edit the JSDoc in the component, not this text."
+    },
+    "TextField": {
+      "properties": {
+        "helperText": {
+          "type": "BOOLEAN",
+          "default": false
+        },
+        "showValue": {
+          "type": "BOOLEAN",
+          "default": true
+        },
+        "showPlaceholder": {
+          "type": "BOOLEAN",
+          "default": false
+        },
+        "required": {
+          "type": "BOOLEAN",
+          "default": false
+        },
+        "value": {
+          "type": "TEXT",
+          "default": "Value"
+        },
+        "label": {
+          "type": "TEXT",
+          "default": "Label"
+        },
+        "placeholder": {
+          "type": "TEXT",
+          "default": "Placeholder"
+        },
+        "state": {
+          "type": "VARIANT",
+          "options": [
+            "enabled",
+            "error",
+            "disabled",
+            "focused",
+            "hovered"
+          ],
+          "default": "enabled"
+        },
+        "hasValue": {
+          "type": "VARIANT",
+          "options": [
+            "false",
+            "true"
+          ],
+          "default": "true"
+        }
+      },
+      "description": "import { TextField } from &#39;@northwind/ui&#39;\n\nSingle-line text input with a label. Wraps MUI TextField (outlined only).\n\nIn Figma: the helperText toggle shows the hint line; edit its words in the layer.\nHover and focus are Figma-only states; code handles them itself.\n\nProps\n• label\n    Visible label. Always give one; placeholders are not labels.\n• value?. In Figma: text &quot;value&quot; + toggle &quot;showValue&quot;\n    Controlled value. Use with onChange.\n• helperText?. In Figma: toggle &quot;helperText&quot;\n    Hint under the field. When error is true, say what is wrong and how to fix it.\n• error?: true | false. In Figma: state=error\n    Shows the field in the error state. Pair it with helperText.\n• required?: true | false\n• disabled?: true | false. In Figma: state=disabled\n• placeholder?. In Figma: text &quot;placeholder&quot; + toggle &quot;showPlaceholder&quot;\n    Example input, shown when empty. Not a replacement for label.\n\nStorybook: Components/TextField\n\nGenerated from code. Edit the JSDoc in the component, not this text."
+    },
+    "Alert": {
+      "properties": {
+        "onClose": {
+          "type": "BOOLEAN",
+          "default": false
+        },
+        "title": {
+          "type": "BOOLEAN",
+          "default": true
+        },
+        "titleText": {
+          "type": "TEXT",
+          "default": "Permit expires soon"
+        },
+        "message": {
+          "type": "TEXT",
+          "default": "Renew before 14 November to avoid a stop."
+        },
+        "severity": {
+          "type": "VARIANT",
+          "options": [
+            "error",
+            "warning",
+            "info",
+            "success"
+          ],
+          "default": "info"
+        }
+      },
+      "description": "import { Alert } from &#39;@northwind/ui&#39;\n\nA message about the page or a task. Wraps MUI Alert (standard style only).\n\nProps\n• severity?: info | success | warning | error (default info)\n    How serious the message is.\n    - info: useful to know.\n    - success: something worked.\n    - warning: may need action.\n    - error: something failed and needs action.\n• title?. In Figma: text &quot;titleText&quot; + toggle &quot;title&quot;\n    Optional bold first line.\n• children. In Figma: text &quot;message&quot;\n    The message. Say what happened and what to do next.\n• onClose?. In Figma: toggle &quot;onClose&quot;\n    Shows a close button. Leave out for messages that must stay visible.\n\nStorybook: Components/Alert\n\nGenerated from code. Edit the JSDoc in the component, not this text."
+    },
+    "StatusLabel": {
+      "properties": {
+        "label": {
+          "type": "TEXT",
+          "default": "Pending review"
+        },
+        "status": {
+          "type": "VARIANT",
+          "options": [
+            "neutral",
+            "info",
+            "success",
+            "warning",
+            "error"
+          ],
+          "default": "neutral"
+        }
+      },
+      "description": "import { StatusLabel } from &#39;@northwind/ui&#39;\n\nShows the status of a record, for example in a table row. Not clickable.\nBuilt on MUI Chip. (MUI&#39;s Badge is a notification counter, not a status label.)\n\nProps\n• label\n    Short, self-describing text: &quot;Approved&quot;, &quot;Overdue&quot;, &quot;Pending review&quot;. Not just &quot;OK&quot;.\n• status?: neutral | info | success | warning | error (default neutral)\n    The state the label reports.\n    - neutral: waiting, draft, not started.\n    - info: in progress or for information.\n    - success: done, approved, healthy.\n    - warning: needs attention soon.\n    - error: failed, blocked, overdue.\n\nStorybook: Components/StatusLabel\n\nGenerated from code. Edit the JSDoc in the component, not this text."
+    },
+    "Card": {
+      "properties": {
+        "title": {
+          "type": "TEXT",
+          "default": "Rotterdam terminal"
+        },
+        "subtitle": {
+          "type": "TEXT",
+          "default": "Updated today, 08:12"
+        },
+        "showHeader": {
+          "type": "BOOLEAN",
+          "default": true
+        },
+        "showSubtitle": {
+          "type": "BOOLEAN",
+          "default": true
+        },
+        "Action": {
+          "type": "SLOT"
+        },
+        "Content": {
+          "type": "SLOT"
+        },
+        "Footer": {
+          "type": "SLOT"
+        },
+        "showAction": {
+          "type": "BOOLEAN",
+          "default": true
+        },
+        "showFooter": {
+          "type": "BOOLEAN",
+          "default": true
+        }
+      },
+      "description": "import { Card } from &#39;@northwind/ui&#39;\n\nGroups related content on a surface. Flat with a border. Wraps MUI Card.\n\nProps\n• title?. In Figma: text &quot;title&quot; + toggle &quot;showHeader&quot;\n    Heading for the card.\n• subtitle?. In Figma: text &quot;subtitle&quot; + toggle &quot;showSubtitle&quot;\n    One line under the title, such as a date or a count.\n• action?. In Figma: slot &quot;Action&quot; + toggle &quot;showAction&quot;\n    Something small at the top right, such as a StatusLabel or a ghost Button.\n• children?. In Figma: slot &quot;Content&quot;\n    The card&#39;s content.\n• footer?. In Figma: slot &quot;Footer&quot; + toggle &quot;showFooter&quot;\n    Buttons along the bottom. Put the primary action last.\n\nStorybook: Components/Card\n\nGenerated from code. Edit the JSDoc in the component, not this text."
+    },
+    "DataTable/HeaderCell": {
+      "properties": {
+        "label": {
+          "type": "TEXT",
+          "default": "Column"
+        },
+        "density": {
+          "type": "VARIANT",
+          "options": [
+            "standard",
+            "compact"
+          ],
+          "default": "standard"
+        },
+        "align": {
+          "type": "VARIANT",
+          "options": [
+            "left",
+            "right"
+          ],
+          "default": "left"
+        }
+      },
+      "description": "Column heading for DataTable. Matches MUI Data Grid: 56px (39px compact), 14px medium, 10px side padding, divider below. align=right for number columns."
+    },
+    "DataTable/Cell": {
+      "properties": {
+        "value": {
+          "type": "TEXT",
+          "default": "Rotterdam terminal"
+        },
+        "type": {
+          "type": "VARIANT",
+          "options": [
+            "text",
+            "number",
+            "status"
+          ],
+          "default": "text"
+        },
+        "density": {
+          "type": "VARIANT",
+          "options": [
+            "standard",
+            "compact"
+          ],
+          "default": "standard"
+        }
+      },
+      "description": "Body cell for DataTable. type=text | number (right-aligned) | status (a StatusLabel; pick its status on the nested instance). Matches MUI Data Grid: 52px rows (36px compact), body2, 10px side padding, divider below."
+    },
+    "DataTable": {
+      "properties": {
+        "Header": {
+          "type": "SLOT"
+        },
+        "Rows": {
+          "type": "SLOT"
+        },
+        "emptyMessage": {
+          "type": "TEXT",
+          "default": "Nothing to show yet."
+        },
+        "state": {
+          "type": "VARIANT",
+          "options": [
+            "default",
+            "loading",
+            "empty"
+          ],
+          "default": "default"
+        },
+        "density": {
+          "type": "VARIANT",
+          "options": [
+            "standard",
+            "compact"
+          ],
+          "default": "standard"
+        }
+      },
+      "description": "import { DataTable } from &#39;@northwind/ui&#39;\n\nRows of records with sortable columns. Wraps the free MUI X Data Grid (Community).\nUse it for lists people compare or scan: inspections, sites, permits. For two or three items, use Cards.\n\nIn Figma: fill the Header slot with DataTable/HeaderCell instances and the Rows slot with rows of\nDataTable/Cell instances, in the same column order. Figma&#39;s columns are equal width; code uses grow.\n\nProps\n• rows. In Figma: slot &quot;Rows&quot;\n    One object per row. Each needs a unique id, e.g.\n    { id: &#39;i-106&#39;, site: &#39;Antwerp yard&#39;, date: &#39;2026-10-29T09:30&#39;, result: { status: &#39;neutral&#39;, label: &#39;Pending&#39; } }.\n• columns. In Figma: slot &quot;Header&quot;\n    One object per column, in display order:\n    { field: string; header: string; type?: &#39;text&#39; | &#39;number&#39; | &#39;date&#39; | &#39;status&#39;; grow?: 1 | 2 | 3 }.\n    field names a row property. date values are a Date or ISO string; status values are { status, label }\n    (the StatusLabel props). grow is the column&#39;s share of spare width. E.g.\n    [{ field: &#39;site&#39;, header: &#39;Site&#39;, grow: 2 }, { field: &#39;date&#39;, header: &#39;Date&#39;, type: &#39;date&#39; }, { field: &#39;result&#39;, header: &#39;Result&#39;, type: &#39;status&#39; }].\n• loading?: true | false (default false). In Figma: state=loading\n    Shows a loading bar while rows are being fetched.\n• emptyMessage? (default Nothing to show yet.)\n    Shown when there are no rows. Say what&#39;s missing and, if you can, why.\n• density?: standard | compact (default standard)\n    Row height. compact fits more rows on dense screens.\n\nStorybook: Components/DataTable\n\nGenerated from code. Edit the JSDoc in the component, not this text."
+    }
+  }
+}

@@ -44,7 +44,37 @@ If `check-derived` fails, Figma's copies are out of date (usually after a source
 
 ## Code → Figma
 
-Not built yet. Until it is, change tokens in Figma only.
+For **tokens**: not built, and not needed. Tokens only change in Figma, and `npm run check` fails if `/tokens`
+differs from what the snapshot produces. (Acme UI needed a separate "is Figma behind?" check because its tokens
+could change in code. Northwind's can't.)
+
+For **components**: code leads, so Figma is checked against the code. See *Component parity* below.
+
+## Component parity (code → Figma, deterministic)
+
+1. Run `sync/export-components.figma.js` with `use_figma` (read-only). Save the result to `sync/figma-components.json`.
+2. `npm run build-storybook && npm run parity`. It compares Storybook's component manifest with that file: every
+   prop, allowed value, default and description. No AI judgement involved.
+3. How each code prop maps to Figma (text, slot, icon + toggle, an option of `state`) is declared in
+   `sync/parity.config.json`. Props without a rule follow the defaults: union ↔ variant, boolean ↔ boolean,
+   string ↔ text. `keyof typeof X` props are read from the component's source.
+4. ❌ means Figma is wrong: fix the Figma component, re-export, re-run. ➖ is an expected difference and ⚠️ a known
+   gap; both are explained in `GAPS.md`.
+5. Figma gotcha: a component set's **default variant is the one at the top-left** of the set, not the first in the
+   layer list.
+6. Rename or repair variants; never delete one that instances may use.
+
+## Component descriptions (code → Figma, generated)
+
+Figma descriptions on the Northwind page are generated from the code (JSDoc, props and their Figma mapping,
+Storybook page). Never edit them in Figma; edit the JSDoc. Figma-only usage notes go in the component's JSDoc
+as an "In Figma:" paragraph.
+
+1. `npm run build-storybook && npm run figma:descriptions` writes `sync/figma-descriptions.json`.
+2. Run `sync/apply-descriptions.figma.js` with `use_figma`, replacing `__DESCRIPTIONS__` with that JSON.
+3. Re-export and run `npm run parity`. Figma returns descriptions HTML-escaped (`'` as `&#39;`, `"` as `&quot;`);
+   the check decodes them. `DataTable/HeaderCell` and `DataTable/Cell` are Figma-only, so their descriptions
+   stay hand-written.
 
 ## Gotchas
 
