@@ -1,6 +1,16 @@
 # Rules for AI agents working in Northwind UI
 
-These rules are enforced by `npm run check` (ESLint, TypeScript and generated-file checks). CI runs the same check.
+These rules are enforced by `npm run check` (ESLint, TypeScript and generated-file checks) and `npm run parity`
+(code vs Figma components). CI runs both.
+
+## Source of truth (read this first)
+
+- **Tokens: Figma leads.** Colours, spacing, radius and type are decided in Figma variables and synced into
+  `/tokens`. Code never edits tokens.
+- **Components: code leads. Figma mirrors it.** Props, allowed values, defaults and states are defined in
+  `src/components`. If Figma and code disagree about a component, Figma is wrong and gets fixed.
+- **Gaps:** anything one side can't express is listed in `GAPS.md`. Check it before reporting a difference as a
+  bug, and add to it when you find something new.
 
 ## Building screens
 
@@ -26,5 +36,7 @@ These rules are enforced by `npm run check` (ESLint, TypeScript and generated-fi
 
 ## Working
 
-9. Run `npm run check` before you open a pull request. It must pass.
+9. Run `npm run check` before you open a pull request. It must pass. If you changed a component's props or JSDoc,
+   also run `npm run build-storybook && npm run parity`, then update the Figma component and its description to
+   match (see CLAUDE.md).
 10. Do not merge pull requests. A person merges them.

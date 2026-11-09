@@ -104,6 +104,9 @@ function Empty({ message }: { message: string }) {
 /**
  * Rows of records with sortable columns. Wraps the free MUI X Data Grid (Community).
  * Use it for lists people compare or scan: inspections, sites, permits. For two or three items, use Cards.
+ *
+ * In Figma: fill the Header slot with DataTable/HeaderCell instances and the Rows slot with rows of
+ * DataTable/Cell instances, in the same column order. Figma's columns are equal width; code uses `grow`.
  */
 export function DataTable<Row extends { id: string | number }>({
   rows,

@@ -27,7 +27,12 @@ export interface TextFieldProps {
   fullWidth?: boolean;
 }
 
-/** Single-line text input with a label. Wraps MUI TextField (outlined only). */
+/**
+ * Single-line text input with a label. Wraps MUI TextField (outlined only).
+ *
+ * In Figma: the helperText toggle shows the hint line; edit its words in the layer.
+ * Hover and focus are Figma-only states; code handles them itself.
+ */
 export function TextField({ type = 'text', ...rest }: TextFieldProps) {
   return <MuiTextField type={type} {...rest} />;
 }

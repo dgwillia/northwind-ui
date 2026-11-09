@@ -1,0 +1,79 @@
+{
+  "$comment": "Rules for the component parity check (scripts/parity.mjs). Components: code leads, Figma mirrors. Anything not listed is compared by the default rules: a union prop ↔ a Figma variant of the same name, a boolean ↔ a Figma boolean (or a false/true variant), a string ↔ a Figma text property. Every exception here must also be explained in GAPS.md.",
+  "package": "@northwind/ui",
+  "figmaPage": "Northwind",
+
+  "codeOnlyComponents": {
+    "Stack": "Figma uses auto layout frames for layout; gap and padding bound to the spacing variable.",
+    "Text": "Figma uses the typography/* text styles, not a component.",
+    "ColorSchemeSwitch": "A demo control for switching light and dark. Designers switch the palette mode instead."
+  },
+
+  "figmaOnlyComponents": {
+    "DataTable/HeaderCell": "Building block for the DataTable's Header slot. In code the Data Grid draws header cells itself.",
+    "DataTable/Cell": "Building block for the DataTable's Rows slot. In code the Data Grid draws cells from `columns` and `rows`."
+  },
+
+  "codeOnlyProps": {
+    "onClick": "Behaviour only.",
+    "onChange": "Behaviour only.",
+    "type": "HTML input or button type. Behaviour only.",
+    "name": "Form field name. Behaviour only.",
+    "autoComplete": "Browser autofill hint. Behaviour only.",
+    "aria-label": "Screen reader name. Not visible.",
+    "fullWidth": "Stretches to the container. In Figma, set the instance to fill its container.",
+    "defaultValue": "Starting value for an uncontrolled field. Figma shows `value`."
+  },
+
+  "components": {
+    "Button": {
+      "props": {
+        "children": { "text": "label" },
+        "startIcon": { "icon": "↳ startIcon", "toggle": "startIcon" },
+        "endIcon": { "icon": "↳ endIcon", "toggle": "endIcon" },
+        "disabled": { "variantOption": "state", "option": "disabled" },
+        "loading": { "gap": "Code has a Loading story; the Figma Button has no loading state yet." }
+      },
+      "figmaOnly": { "state": "enabled, hovered, focused, pressed: interaction states MUI handles in code." }
+    },
+    "TextField": {
+      "props": {
+        "value": { "text": "value", "toggle": "showValue" },
+        "placeholder": { "text": "placeholder", "toggle": "showPlaceholder" },
+        "helperText": { "toggle": "helperText" },
+        "error": { "variantOption": "state", "option": "error" },
+        "disabled": { "variantOption": "state", "option": "disabled" }
+      },
+      "figmaOnly": {
+        "state": "enabled, hovered, focused: interaction states MUI handles in code.",
+        "hasValue": "Whether the field shows a value or is empty. In code that's just whether `value` is set."
+      }
+    },
+    "Alert": {
+      "props": {
+        "title": { "text": "titleText", "toggle": "title" },
+        "children": { "text": "message" },
+        "onClose": { "toggle": "onClose" }
+      }
+    },
+    "Card": {
+      "props": {
+        "title": { "text": "title", "toggle": "showHeader" },
+        "subtitle": { "text": "subtitle", "toggle": "showSubtitle" },
+        "action": { "slot": "Action", "toggle": "showAction" },
+        "children": { "slot": "Content" },
+        "footer": { "slot": "Footer", "toggle": "showFooter" }
+      }
+    },
+    "DataTable": {
+      "props": {
+        "columns": { "slot": "Header" },
+        "rows": { "slot": "Rows" },
+        "loading": { "variantOption": "state", "option": "loading" },
+        "label": { "codeOnly": "Screen reader name for the grid. Not visible." },
+        "pageSize": { "codeOnly": "Rows per page in the Data Grid's pager. Figma shows one page." }
+      },
+      "figmaOnly": { "state": "`empty` = code with `rows` set to []. `default` = rows present." }
+    }
+  }
+}
