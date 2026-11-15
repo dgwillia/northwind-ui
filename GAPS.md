@@ -52,3 +52,4 @@ The parity check (`npm run parity`) treats these as expected via `sync/parity.co
 | Figma component manifest is exported by hand, so CI only sees Figma as of the last export | Parity check | Run the export in every component PR; automate with the Figma REST API on an Enterprise plan |
 | Figma changes made without an export go unnoticed (tokens and components) | Sync design | Scheduled agent export, or Enterprise REST API |
 | Code Connect not set up (needs a Figma Organization plan) | Acme UI | Map components once the plan allows it |
+| MUI transitions and ripples ignore the reduced-motion setting | DESIGN.md motion rules | Turn them off in `src/theme` when `prefers-reduced-motion` is set |

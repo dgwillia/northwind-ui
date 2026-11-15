@@ -3,6 +3,11 @@
 How to build screens with `@northwind/ui`. For people and AI agents.
 Read this before building a screen. Component props and examples are in Storybook (also through the Storybook MCP).
 
+## Design thesis
+
+Operational and plain: every screen answers "what needs attention?" at a glance, so colour reports status and
+nothing else.
+
 ## The short version
 
 - Build only from `@northwind/ui`. Never import `@mui/*` in product code. Lint blocks it.
@@ -44,6 +49,16 @@ Read this before building a screen. Component props and examples are in Storyboo
 - Status colours (`error`, `warning`, `success`, `info`) are for reporting status only. Not for decoration or brand.
 - Never use colour alone to carry meaning: pair it with a label or an icon.
 - Every screen must work in light and dark. Check both.
+
+## Motion
+
+- Motion explains a change of state. It is never decoration.
+- Use only the motion MUI already provides: button ripples, hover and focus fades, the Data Grid's loading state.
+  Its timings come from the theme (`theme.transitions`). Don't add animation in product code.
+- Nothing moves on its own except a loading indicator.
+- Respect the user's reduced-motion setting (`prefers-reduced-motion`). MUI doesn't turn its transitions off for
+  it by default. This is a known gap (see `GAPS.md`).
+- Duration and easing are not Figma tokens. MUI hard-codes them, like its component padding.
 
 ## Not in the system yet
 
